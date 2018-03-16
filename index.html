@@ -1,10 +1,79 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="utf-8" />
 		<title></title>
 	</head>
+
 	<body>
+		<div id="app-3">
+			<p v-if="seen">现在你看到我了</p>
+		</div>
+		<div id="app-4">
+		  <ol>
+		    <li v-for="todo in todos">
+		      {{ todo.text }}
+		    </li>
+		  </ol>
+		</div>
 		
+		<div id="app-5">
+		  <p>{{ message }}</p>
+		  <!-- v-on:click简写 ： @click-->
+		  <button v-on:click="reverseMessage">逆转消息</button>
+		</div>
+		
+		<div id="app-6">
+			<ol>
+				<todo-item></todo-item>
+			</ol>
+		</div>
+
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			
+			Vue.component('todo-item',{
+				template:'<li>我是item</li>'
+			})
+			var app6 = new Vue({
+				el:'#app-6',
+				data:{
+					msg:"sss"
+				}
+				
+			});
+			
+			var app5 = new Vue({
+				el:'#app-5',
+				data:{
+					message:"fudiandong"
+				},
+				methods:{
+					reverseMessage:function(){
+						this.message = this.message.split('').reverse().join('');
+					}
+				}
+			});
+			
+			
+			var app3 = new Vue({
+				el: '#app-3',
+				data: {
+					seen: true
+				}
+			})
+			var app4 = new Vue({
+			  el: '#app-4',
+			  data: {
+			    todos: [
+			      { text: '学习 JavaScript' },
+			      { text: '学习 Vue' },
+			      { text: '整个牛项目' }
+			    ]
+			  }
+			})
+		</script>
 	</body>
+
 </html>
