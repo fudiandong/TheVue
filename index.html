@@ -26,7 +26,7 @@
 		
 		<div id="app-6">
 			<ol>
-				<todo-item></todo-item>
+				<todo-item v-for="item in list" v-bind:todoa="item" v-bind:key="item.id"></todo-item>
 			</ol>
 		</div>
 
@@ -34,12 +34,16 @@
 		<script type="text/javascript">
 			
 			Vue.component('todo-item',{
-				template:'<li>我是item</li>'
+				props:['todoa'],
+				template:'<li>{{ todoa.text }}</li>'
 			})
 			var app6 = new Vue({
 				el:'#app-6',
 				data:{
-					msg:"sss"
+					list:[{ id: 0, text: '蔬菜' },
+					      { id: 1, text: '奶酪' },
+					      { id: 2, text: '随便其它什么人吃的东西' }
+					    ]
 				}
 				
 			});
